@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
+import API from "./api"
+import {userAtom} from "./atoms"
+import {useRecoilState} from "recoil"
 import './App.css';
+import { Route, Switch, Redirect } from "react-router-dom"
+import AccountSettingsContainer from "./containers/AccountSettingsContainer"
+import PortfolioSettings from './components/PortfolioSettings';
+import LoginContainer from "./containers/LoginContainer"
+import NavBar from './components/NavBar';
 
 function App() {
+
+  const [user,setUser] = useRecoilState(userAtom)
+
+  useEffect(()=>{
+    API.get("/barbers/4")
+    .then(res => setUser(res.data))
+  }, [setUser])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      {user.username && 
+      <div>
+        {user.username}
+      </div>}
+      <Switch>
+      <Route exact path="/login">
+            {user.username ? <Redirect to="/"/> :  
+            <LoginContainer/>}
+        </Route>
+      <Route exact path="/account-settings">
+          <AccountSettingsContainer/>
+        </Route>
+        <Route exact path="/portfolio-settings">
+          <PortfolioSettings/>
+        </Route>
+      </Switch>
     </div>
   );
 }
