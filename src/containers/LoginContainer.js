@@ -6,7 +6,7 @@ import NewAccountForm from '../components/NewAccountForm'
 
 export default function LoginContainer(){
 
-    const [input, setInput] = useState({email: "", password: "", isBarber: false}),
+    const [input, setInput] = useState({email: "", password: "", isBarber: true}),
         [userInfo, setUserinfo] = useRecoilState(user)
 
     function handleLogin(e){
@@ -15,7 +15,7 @@ export default function LoginContainer(){
         API.post(`logins`, {login})
         .then(res => {
             if(!res.data.error){
-                debugger
+               
                 setUserinfo(res.data.user)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("type", input.isBarber)
@@ -30,7 +30,7 @@ export default function LoginContainer(){
     function handleInput(e){
         
         let {name, value} = e.target
-        name !== "isBarber" ? setInput({...input, [name]: value}) : setInput({...input, isBarber: !input.isBarber})
+        setInput({...input, [name]: value})
       
         console.log(input)
     }
@@ -48,8 +48,6 @@ export default function LoginContainer(){
                 <input type="text" name="email" value={input.email} onChange={handleInput} placeholder="Enter email"/>
                 <br/>
                 <input type="password" name="password" value={input.password} onChange={handleInput} placeholder="Enter password"/>
-                <br/>
-                Are you a barber? <input type="checkbox" name="isBarber" onChange={handleInput}/>
                 <br/>
                 <input type="submit"/>
             </form>
