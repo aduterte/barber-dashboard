@@ -30,11 +30,9 @@ export default function NavBar(){
             <div id="nav-bar-right">
 
                 <div>
-                  {localStorage.type === "true"? 
-                   <Link to={`/barbers/${user.id}`}><img src={user.photo} className="mini-avatar" alt="user avatar"/></Link>
-                   :
-                  <Link to={`/clients/${user.id}`}><img src={user.photo} className="mini-avatar" alt="user avatar"/></Link>
-                   }
+                  
+                   <Link to={`/dashboard`}><img src={user.photo} className="mini-avatar" alt="user avatar"/></Link>
+                   
                   </div>
                 <div>Welcome {user.username}</div>
                 <div><Link to={'/account-settings'}> Settings</Link></div>

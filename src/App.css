@@ -89,3 +89,28 @@ html {
   margin-left: 10px;
   font-size: 60px;
 }
+
+#dashboard-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dashboard-left {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  border: rgb(155, 155, 155) solid 1px;
+  background-color: rgba(255, 255, 255, 0.906);
+  border-radius: 15px;
+  /* width: 200px; */
+}
+
+.dashboard-right {
+  margin-left: 100px;
+}
+
+.dashboard-user-info {
+  display: flex;
+  flex-direction: column;
+}
