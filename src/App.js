@@ -9,14 +9,35 @@ import PortfolioSettings from './components/PortfolioSettings';
 import LoginContainer from "./containers/LoginContainer"
 import NavBar from './components/NavBar';
 
+import {barbersState,
+  clientsState,
+  userState} from './atoms'
+
 function App() {
 
-  const [user,setUser] = useRecoilState(userAtom)
+  const [user,setUser] = useRecoilState(userState)
+
+  useEffect(() => {
+    API.get('http://localhost:3000/barbers')
+    .then(res => setBarbers(res.data))
+    
+    API.get('http://localhost:3000/clients')
+    .then(res => setClients(res.data))
+    
+  
+  },[setBarbers, setClients])
 
   useEffect(()=>{
-    API.get("/barbers/4")
-    .then(res => setUser(res.data))
+    if (localStorage.token){
+    let options = {headers: {'Authenticate': localStorage.token, 'User': localStorage.type}}
+    API.get(`/logins`, options)
+    .then(res => {
+      
+      setUser(res.data)
+    })
+    }  
   }, [setUser])
+
 
   return (
     <div className="App">
@@ -33,6 +54,9 @@ function App() {
       <Route exact path="/account-settings">
           <AccountSettingsContainer/>
         </Route>
+        <Route exact path ="/clients/:clientID"
+        component={ClientDetail}/>
+        
         <Route exact path="/portfolio-settings">
           <PortfolioSettings/>
         </Route>
