@@ -25,6 +25,9 @@ export default function Reviews(props){
         // debugger
         API.post("/barber_review_comments", data)
         .then( res => {
+            // let comments = [...user.barber_review_comments]
+            // comments.push(res.data)
+            // setUser({...user, ['barber_reviews']: [...user.barber]})
             setUser(res.data)
         })
     }
