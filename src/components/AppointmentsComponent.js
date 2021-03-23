@@ -16,7 +16,8 @@ export default function AppointmentsComponent(){
         let data = {barber_id: user.id, client_id: 9, b_accepted:true, c_accepted:false, date:date, completed: false}
         API.post("/appointments", data)
         .then(res => {
-            console.log(res.data)
+            setUser({...user, appointments: [...user.appointments, res.data]})
+       
         })
     }
 
@@ -24,7 +25,7 @@ export default function AppointmentsComponent(){
     return(
         <div>
             appointments here
-            <DateTimePicker minDate={new Date()} disableClock="true" onChange={setDate} value={date}/>
+            <DateTimePicker minDate={new Date()} disableClock={true} onChange={setDate} value={date}/>
             <div>
                 {`${date}`}
             </div>
