@@ -10,10 +10,10 @@ export default function AppointmentsComponent(){
 
     const makeAppointment = () => {
         let date = new Date("April 1, 2021 03:00:00"),
-        data = {barber_id: user.id, client_id: 9, b_accepted:true, c_accepted:false, date:date, completed: false}
+        data = {barber_id: user.id, client_id: 17, b_accepted:true, c_accepted:false, date:date, completed: false}
         API.post("/appointments", data)
         .then(res => {
-            console.log(res)
+            console.log(res.data)
         })
     }
     return(
