@@ -5,9 +5,13 @@ export default function AppointmentDetails(props){
     const {client, date} = props.appt
 
     return (
-        <div>
+        <div className="appointment-card">
+            <div className="appointment-card-top">
+                <img src={client.photo} alt="client photo" className="mini-avatar"/>
             <div>Appointment with {client.username}</div>
-            <div>{date}</div>
+            </div>
+            
+            <div>{`${new Date(date)}`}</div>
 
         </div>
     )

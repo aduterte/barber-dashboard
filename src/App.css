@@ -114,3 +114,23 @@ html {
   display: flex;
   flex-direction: column;
 }
+
+.appointment-card {
+  display: flex;
+  flex-direction: column;
+  border:rgb(155, 155, 155) solid 1px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin: 10px 0px;
+}
+
+.appointment-card-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.appointment-card-top img {
+  margin: 0px 10px 0px 0px;
+}
