@@ -22,20 +22,26 @@ export default function Reviews(props){
     const handleSubmit = (e) =>{
         e.preventDefault()
         let data = {content: input, barber_id: user.id, barber_review_id: review.id}
-        // debugger
         API.post("/barber_review_comments", data)
         .then( res => {
-            // let comments = [...user.barbe
-            setUser(res.data)
-        })
+            
+            let i = user.barber_reviews.indexOf(review)
+            let array = [...user.barber_reviews]
+            array[i] = {...array[i], barber_review_comment: res.data}
+            
+            setUser({...user, barber_reviews: array })
+            
+            }) 
     }
 
     return (
         <div>
+         
             {review.client.username}
             <br/>
             {review.content}
-            {review.barber_review_comments.length === 0 ? 
+           
+            {!review.barber_review_comment ? 
             <div>
                 {reply && 
                 <form onSubmit={handleSubmit}>
@@ -48,8 +54,10 @@ export default function Reviews(props){
             </div>
             :
             <div>
-                {review.barber_review_comments[0].content}
+                {/* {test()} */}
+                {review.barber_review_comment.content}
             </div>}
+            
         </div>
     )
 }

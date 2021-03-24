@@ -19,10 +19,10 @@ export default function NavBar(){
             <div>
                 <Link to={`/`} id="nav-bar-left">
                     <div className="home-icon">
-                        Home Icon Here
+                        QCuts
                     </div>
                     <div>
-                        Q-Cuts
+                        
                     </div>
                 </Link>
             </div>

@@ -24,12 +24,15 @@ export default function AppointmentsComponent(){
 
     return(
         <div>
-            appointments here
-            <DateTimePicker minDate={new Date()} disableClock={true} onChange={setDate} value={date}/>
+            <div className="test-appointment">
+                <h4>Appointment Tester</h4>
+            <DateTimePicker style={{backgroundColor: "red"}}minDate={new Date()} disableClock={true} onChange={setDate} value={date}/>
             <div>
                 {`${date}`}
             </div>
-            <div onClick={makeAppointment}>Test Appointment</div>
+            <div onClick={makeAppointment}>Create Test Appointment</div>
+            </div>
+            
             {user && user.appointments.map(appt => <AppointmentDetails key={`app${appt.id}`} appt={appt}/>)}
         </div>
     )

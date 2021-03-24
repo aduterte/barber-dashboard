@@ -1,6 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 html {
   height:100vh;
+}
+
+a:link {
+  text-decoration: none;
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color:rgb(155, 155, 155);
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  color: white;
+  text-decoration: none;
 }
 
 #nav-bar {
@@ -9,10 +33,17 @@ html {
   /* padding: 10px; */
   align-items: center;
   color: white;
-  background-color: black;
+  background-color: rgb(15, 13, 43);
   height: 60px;
 }
 
+.home-icon{
+  color:white;
+  font-family: 'Satisfy', cursive;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 20px;
+}
 #nav-bar-left {
   display: flex;
   justify-content: left;
@@ -101,8 +132,11 @@ html {
   margin: 10px;
   padding: 10px;
   border: rgb(155, 155, 155) solid 1px;
-  background-color: rgba(255, 255, 255, 0.906);
+  background-color:rgb(15, 13, 43);
   border-radius: 15px;
+  color:white;
+  font-weight: bold;
+  height: calc(100vh - 150px);
   /* width: 200px; */
 }
 
@@ -133,4 +167,9 @@ html {
 
 .appointment-card-top img {
   margin: 0px 10px 0px 0px;
+}
+
+.test-appointment {
+  background-color: white;
+  border: solid black 1px;
 }

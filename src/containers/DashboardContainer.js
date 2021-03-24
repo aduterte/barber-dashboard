@@ -37,15 +37,16 @@ export default function DashboardContainer(){
         <div id="dashboard-container">
             <div className="dashboard-left">
                 <DashboardUserInfoComponent user={user}/>
+                <h4>Dashboard</h4>
                 <div onClick={selectReviews}>My Reviews</div>
                 <div onClick={selectAppointments}>My Appointments</div>
                 <div onClick={selectPortfolio}>My Portfolio</div>
             </div>
             <div className="dashboard-right">
-                dashboard details
+                dashboard details go here
                 {isReviews &&
                 <div className="reviews">
-                    {user.barber_reviews.map(review => <Reviews key={`review${review.id}`} review={review}/>)}
+                    {user.barber_reviews.map((review, i) => <Reviews key={`review${review.id}`} index={i} review={review}/>)}
                
                 </div>}
                 {isAppointments && <AppointmentsComponent/>}
