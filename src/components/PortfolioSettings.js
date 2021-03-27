@@ -19,7 +19,7 @@ export default function PortfolioSettings(){
 
         API.post('/photos', form, {headers: {"Content-Type": "multipart/form-data"}} )
         .then(res => {
-            setUser({...user, ['photos']: [...user.photos, res.data]})
+            setUser({...user, photos: [...user.photos, res.data]})
         })
     }
 
@@ -36,6 +36,7 @@ export default function PortfolioSettings(){
     }
     return (
         <div>
+            really?
             <form onSubmit={handleSubmit}>
             <input type="file" name="photo"
        accept="image/png, image/jpeg" onChange={handleFile}/>

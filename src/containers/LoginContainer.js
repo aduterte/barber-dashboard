@@ -1,24 +1,37 @@
 import React, {useState} from 'react'
-import {userAtom as user} from '../atoms'
-import {useRecoilState} from 'recoil'
+import {userAtom, reviewsAtom, appointmentsAtom, conversationsAtom, portfolioAtom} from '../atoms'
+import {useSetRecoilState} from 'recoil'
 import API from "../api"
 import NewAccountForm from '../components/NewAccountForm'
 
 export default function LoginContainer(){
 
     const [input, setInput] = useState({email: "", password: "", isBarber: true}),
-        [userInfo, setUserinfo] = useRecoilState(user)
+        setUser = useSetRecoilState(userAtom),
+        setReviews = useSetRecoilState(reviewsAtom),
+        setAppointments  = useSetRecoilState(appointmentsAtom),
+        setConversations = useSetRecoilState(conversationsAtom),
+        setPortfolio = useSetRecoilState(portfolioAtom)
+
 
     function handleLogin(e){
         e.preventDefault()
         const login = input
+        // debugger
         API.post(`logins`, {login})
         .then(res => {
             if(!res.data.error){
-               
-                setUserinfo(res.data.user)
+                
+                // let user = {id: res.data.user.id, first_name: res.data.user.first_name, last_name: res.data.user.last_name, email: res.data.user.email, photo: res.data.user.photo}
+                setUser({id: res.data.user.id, first_name: res.data.user.first_name, last_name: res.data.user.last_name, email: res.data.user.email, photo: res.data.user.photo, username: res.data.user.username})
+                // setUser(res.data.user)
+                setReviews(res.data.user.barber_reviews)
+                setAppointments(res.data.user.appointments)
+                setConversations(res.data.user.conversations)
+                setPortfolio(res.data.user.photos)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("type", input.isBarber)
+                // debugger
             }
             else{
                 // console.log(res.data.error)
@@ -38,12 +51,12 @@ export default function LoginContainer(){
     function handleLogout(){
         localStorage.removeItem("token")
         localStorage.removeItem("type")
-        setUserinfo({})
+        setUser({})
     }
 
     return (
         <div>
-            Logged in as: {userInfo.first_name}
+            
             <form onSubmit={handleLogin}>
                 <input type="text" name="email" value={input.email} onChange={handleInput} placeholder="Enter email"/>
                 <br/>

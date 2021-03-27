@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import API from "../api"
-import { userAtom } from '../atoms';
-import {useRecoilState} from "recoil"
+import { userAtom, reviewsAtom} from '../atoms';
+import {useRecoilState, useRecoilValue} from "recoil"
 
 export default function Reviews(props){
 
-    const review = props.review,
+    const {review, index }= props,
         [reply, setReply] = useState(false),
         [input, setInput] = useState(""),
-        [user, setUser] = useRecoilState(userAtom)
+        user = useRecoilValue(userAtom),
+        [reviews, setReviews] = useRecoilState(reviewsAtom)
 
     const handleInput = (e) => {
         setInput(e.target.value)
@@ -25,11 +26,11 @@ export default function Reviews(props){
         API.post("/barber_review_comments", data)
         .then( res => {
             
-            let i = user.barber_reviews.indexOf(review)
-            let array = [...user.barber_reviews]
-            array[i] = {...array[i], barber_review_comment: res.data}
+            // let i = reviews.indexOf(review)
+            let array = [...reviews]
+            array[index] = {...array[index], barber_review_comment: res.data}
             
-            setUser({...user, barber_reviews: array })
+            setReviews(array)
             
             }) 
     }

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {userAtom as user} from '../atoms'
-import {useRecoilState} from 'recoil'
+import {useSetRecoilState} from 'recoil'
 import API from "../api"
 
 export default function NewAccountForm(){
 
     const [input, setInput] = useState({username: "", avatar: "", zip_code: "", first_name: "", last_name: "", email: "", password: "", password_confirmation:"", isBarber: false}),
-    [userInfo, setUserinfo] = useRecoilState(user)
+        setUser = useSetRecoilState(user)
 
     function handleSubmit(e){
         console.log("why")
@@ -47,8 +47,8 @@ export default function NewAccountForm(){
         API.post(endpoint, form,{headers: {"Content-Type": "multipart/form-data"}})
         .then(res => {
             if(!res.data.error){
-                debugger
-                setUserinfo(res.data.user)
+                // debugger
+                setUser(res.data.user)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("type", input.isBarber)
                 
@@ -63,16 +63,16 @@ export default function NewAccountForm(){
     function handleInput(e){
         
         let {name, value} = e.target
-        name !== "isBarber" ? setInput({...input, [name]: value}) : setInput({...input, isBarber: !input.isBarber})
+        setInput({...input, [name]: value})
       
         console.log(input)
     }
 
     function handleFile(e){
         console.log(e.target)
-        let test = e.target.files[0]
-        setInput({...input, ['avatar']: test})
-        debugger
+        let photo = e.target.files[0]
+        setInput({...input, avatar: photo})
+        // debugger
     }
     return (
         <div>
@@ -94,8 +94,7 @@ export default function NewAccountForm(){
                 <br/>
                 <input type="text" name="zip_code" value={input.zip_code} onChange={handleInput} placeholder="Enter zip code"/>
                 <br/>
-                Are you a barber? <input type="checkbox" name="isBarber" onChange={handleInput}/>
-                <br/>
+                
                 <input type="submit"/>
             </form>
         </div>

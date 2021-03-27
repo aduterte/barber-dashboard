@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import API from "./api"
-import {userAtom} from "./atoms"
-import {useRecoilState} from "recoil"
+import {userAtom, reviewsAtom, appointmentsAtom, conversationsAtom, portfolioAtom} from "./atoms"
+import {useRecoilState, useSetRecoilState} from "recoil"
 import './App.css';
 import { Route, Switch, Redirect } from "react-router-dom"
 import AccountSettingsContainer from "./containers/AccountSettingsContainer"
@@ -12,7 +12,11 @@ import DashboardContainer from './containers/DashboardContainer';
 
 function App() {
 
-  const [user,setUser] = useRecoilState(userAtom)
+  const [user, setUser] = useRecoilState(userAtom),
+        setReviews = useSetRecoilState(reviewsAtom),
+        setAppointments  = useSetRecoilState(appointmentsAtom),
+        setConversations = useSetRecoilState(conversationsAtom),
+        setPortfolio = useSetRecoilState(portfolioAtom)
 
   // useEffect(()=>{
   //   API.get("/barbers/4")
@@ -26,10 +30,16 @@ function App() {
       API.get(`/logins`, options)
       .then(res => {
         
-        setUser(res.data)
+        let user = {username: res.data.username, id: res.data.id, first_name: res.data.first_name, last_name: res.data.last_name, email: res.data.email, photo: res.data.photo}
+        setUser(user)
+        // setUser(res.data)
+        setReviews(res.data.barber_reviews)
+        setAppointments(res.data.appointments)
+        setConversations(res.data.conversations)
+        setPortfolio(res.data.photos)
       })
       }  
-    }, [setUser])
+    }, [setUser, setReviews, setAppointments, setConversations, setPortfolio])
 
   return (
     <div className="App">
