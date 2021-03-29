@@ -43,3 +43,8 @@ export const portfolioAtom = atom({
   key: "portfolioAtom",
   default: []
 })
+
+export const openConvos = atom({
+  key: "openConvos",
+  default: []
+})

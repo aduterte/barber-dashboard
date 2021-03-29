@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import {userAtom} from "../atoms"
 import {useRecoilState} from "recoil"
+import MessagesView from '../Messages/MessagesView'
 
 
 export default function NavBar(){
@@ -21,23 +22,16 @@ export default function NavBar(){
                     <div className="home-icon">
                         QCuts
                     </div>
-                    <div>
-                        
-                    </div>
                 </Link>
             </div>
             {user.username ?
             <div id="nav-bar-right">
-
-                <div>
-                  
-                   <Link to={`/dashboard`}><img src={user.photo} className="mini-avatar" alt="user avatar"/></Link>
-                   
-                  </div>
+                <div>               
+                    <Link to={`/dashboard`}><img src={user.photo} className="mini-avatar" alt="user avatar"/></Link>
+                </div>
                 <div>Welcome {user.username}</div>
                 <div><Link to={'/account-settings'}> Settings</Link></div>
-                {localStorage.type === "true" && <div><Link to={'/portfolio-settings'}> Portfolio</Link></div>}
-                
+                <div>Message Icon</div>
                 <div onClick={handleLogout}>Logout</div>
             </div>
             :

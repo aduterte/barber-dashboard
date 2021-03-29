@@ -1,6 +1,6 @@
-import React, {useContext, useEffect} from 'react';
-import {conversationsAtom, convoSelector} from "../atoms"
-import {useRecoilState, useRecoilValue} from "recoil"
+import React, {useState, useContext, useEffect} from 'react';
+import {conversationsAtom, convoSelector, openConvos as convoList} from "../atoms"
+import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil"
 import { ActionCableContext } from '../index';
 import MessagesContainer from '../containers/MessagesContainer';
 
@@ -9,7 +9,8 @@ export default function ConversationComponent(props){
 
     const [conversations, setConversations] = useRecoilState(conversationsAtom),
         convo = useRecoilValue(convoSelector(props.convo.id)),
-        cable = useContext(ActionCableContext)
+        cable = useContext(ActionCableContext),
+        [openConvos, setOpenConvos] = useRecoilState(convoList)
   
     useEffect(()=>{
         cable.subscriptions.create(
@@ -21,12 +22,18 @@ export default function ConversationComponent(props){
             }}
             )
     })
+
+    function showConvo(){
+        setOpenConvos([...openConvos, convo])
+    }
     // console.log(convo)
     return (
         <div>
-         Conversation with {convo.client.username}
+         <div onClick={showConvo}>
+           <img src={convo.client.photo} className="mini-avatar"/>
+         </div>
 
-                <MessagesContainer convo={convo}/>
+               
                 
         </div>
     )

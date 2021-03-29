@@ -21,7 +21,7 @@ export default function LoginContainer(){
         API.post(`logins`, {login})
         .then(res => {
             if(!res.data.error){
-                
+                debugger
                 // let user = {id: res.data.user.id, first_name: res.data.user.first_name, last_name: res.data.user.last_name, email: res.data.user.email, photo: res.data.user.photo}
                 setUser({id: res.data.user.id, first_name: res.data.user.first_name, last_name: res.data.user.last_name, email: res.data.user.email, photo: res.data.user.photo, username: res.data.user.username})
                 // setUser(res.data.user)

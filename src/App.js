@@ -9,6 +9,10 @@ import PortfolioSettings from './components/PortfolioSettings';
 import LoginContainer from "./containers/LoginContainer"
 import NavBar from './components/NavBar';
 import DashboardContainer from './containers/DashboardContainer';
+import WSSubscriptions from './Services/WSSubcriptions';
+import MessagesView from './Messages/MessagesView';
+
+
 
 function App() {
 
@@ -18,12 +22,10 @@ function App() {
         setConversations = useSetRecoilState(conversationsAtom),
         setPortfolio = useSetRecoilState(portfolioAtom)
 
-  // useEffect(()=>{
-  //   API.get("/barbers/4")
-  //   .then(res => setUser(res.data))
-  // }, [setUser])
+    
 
     // token authentication on refresh
+    
     useEffect(()=>{
       if (localStorage.token){
       let options = {headers: {'Authenticate': localStorage.token, 'User': localStorage.type}}
@@ -38,30 +40,30 @@ function App() {
         setConversations(res.data.conversations)
         setPortfolio(res.data.photos)
       })
-      }  
-    }, [setUser, setReviews, setAppointments, setConversations, setPortfolio])
+      } 
+      //eslint-disable-next-line react-hooks/exhaustive-deps 
+    }, [])
 
   return (
     <div className="App">
+      <WSSubscriptions/>
+      <MessagesView/>
       <NavBar/>
       <div id="main-bottom">
-      
-     
-      <Switch>
-        <Route exact path="/dashboard">
-          {user.username ? <DashboardContainer/> : <Redirect to="/login"/>}
-        </Route>
-        <Route exact path="/login">
-            {user.username ? <Redirect to="/dashboard"/> : <LoginContainer/>}
-        </Route>
-        <Route exact path="/account-settings">
-          {!user.username ? <Redirect to="/login"/> : <AccountSettingsContainer/>}
-        </Route>
-        <Route exact path="/portfolio-settings">
-          {!user.username ? <Redirect to="/login"/> : <PortfolioSettings/>}
-        </Route>
-      </Switch>
-      
+        <Switch>
+          <Route exact path="/dashboard">
+            {user.username ? <DashboardContainer/> : <Redirect to="/login"/>}
+          </Route>
+          <Route exact path="/login">
+              {user.username ? <Redirect to="/dashboard"/> : <LoginContainer/>}
+          </Route>
+          <Route exact path="/account-settings">
+            {!user.username ? <Redirect to="/login"/> : <AccountSettingsContainer/>}
+          </Route>
+          <Route exact path="/portfolio-settings">
+            {!user.username ? <Redirect to="/login"/> : <PortfolioSettings/>}
+          </Route>
+        </Switch>
       </div>
     </div>
   );

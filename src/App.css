@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 html {
   height:100vh;
@@ -136,7 +137,7 @@ a:active {
   border-radius: 15px;
   color:white;
   font-weight: bold;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 120px);
   /* width: 200px; */
 }
 
@@ -173,3 +174,79 @@ a:active {
   background-color: white;
   border: solid black 1px;
 }
+
+#messages-view {
+  position: fixed;
+  bottom: 30px;
+  right:30px;
+  z-index:100;
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+  
+}
+
+.messages-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:50px;
+  height: 50px;
+  background-color: rgb(15, 13, 43);
+  color: white;
+  border-radius: 25px;
+  
+}
+
+.message-container {
+  background-color: white;
+  border: rgb(202, 202, 202) solid 1px;
+  border-radius: 10px;
+  width: 200px;
+  margin-right: 5px;
+}
+
+.messages-wrapper {
+  background-color: rgb(231, 239, 255);
+}
+.message-wrapper {
+  width:200px;
+}
+.conversation-list {
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  
+}
+
+.message-sent {
+  /* background-color: rgb(102, 162, 241); */
+  /* color:white; */
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+}
+
+.message-sent .message{
+  color: white;
+  background-color: rgb(102, 162, 241);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.message-received {
+  /* background-color: rgb(102, 162, 241); */
+  /* color:white; */
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+}
+
+.message-received .message{
+  color: white;
+  background-color: rgb(148, 148, 148);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+

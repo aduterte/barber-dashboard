@@ -14,12 +14,20 @@ export default function Message(props){
             return message.client.username
         }
     }
+    function formatMessage(){
+        if (message.sent_by === "barber"){
+            return "message-sent"
+        } else {
+            return "message-received"
+        }
+       
+    }
 
 return (
-    <div>
+    <div className={formatMessage()}>
         {/* List of Conversations */}
        <div>{getSender()} said:</div>
-       <div>{message.text}</div>
+       <div style={{maxWidth: "100px"}} className="message">{message.text}</div>
         
         {/* <ActionCableConsumer channel={{channel: 'RoomsChannel'}} onReceived={handleRecievedRoom}/> */}
     </div>
