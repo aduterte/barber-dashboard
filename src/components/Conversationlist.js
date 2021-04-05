@@ -1,5 +1,5 @@
 import React from 'react';
-import {userAtom, conversationsAtom} from "../atoms"
+import {userAtom, conversationsAtom, openConvos} from "../atoms"
 import {useRecoilValue} from "recoil"
 
 import ConversationComponent from "./ConversationComponent"
@@ -8,7 +8,8 @@ import ConversationComponent from "./ConversationComponent"
 export default function ConversationList(){
 
     const user = useRecoilValue(userAtom),
-        conversations = useRecoilValue(conversationsAtom)
+        conversations = useRecoilValue(conversationsAtom),
+        convos = useRecoilValue(openConvos)
         
    
     return (

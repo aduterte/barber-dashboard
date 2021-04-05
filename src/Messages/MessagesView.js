@@ -9,17 +9,25 @@ export default function MessagesView(){
     const [showMessages, setShowMessages] = useState(false),
         [convos, setConvos] = useRecoilState(openConvos)
 
+    function getDisplay(){
+        if (showMessages) {
+            return {display: "flex"}
+        } else {
+            return {display: "none"}
+        }
+    }
     return (
         <div id="messages-view">
-            <div>
-               { convos.map((convo, index) => <MessagesContainer convo={convo} index={index}/>)}
+            <div  className="message-boxes">
+               { convos.map((convo, index) => <MessagesContainer key={convo.id} convo={convo} index={index}/>)}
             </div>
             <div className="conversation-list">
                 <div className="messages-icon" onClick={()=>setShowMessages(!showMessages)}>
-                <i class="material-icons" style={{fontSize:"26px"}}>message</i>
+                <i className="material-icons" style={{fontSize:"26px"}}>message</i>
 
                 </div>
-                {!!showMessages && <ConversationList/>}
+                <div style={getDisplay()}>{ <ConversationList/>}</div>
+                
 
             </div>
           

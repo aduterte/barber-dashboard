@@ -34,7 +34,8 @@ export default function LoginContainer(){
                 // debugger
             }
             else{
-                // console.log(res.data.error)
+                
+                debugger
             }
         })
         console.log("hit")

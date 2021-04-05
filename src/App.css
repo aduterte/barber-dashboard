@@ -202,21 +202,31 @@ a:active {
   background-color: white;
   border: rgb(202, 202, 202) solid 1px;
   border-radius: 10px;
-  width: 200px;
+  width: 300px;
   margin-right: 5px;
+  /* max-height: 450px; */
 }
 
 .messages-wrapper {
   background-color: rgb(231, 239, 255);
+  padding: 0px 10px;
+  height: 400px;
+  overflow: auto;
 }
 .message-wrapper {
-  width:200px;
+  width:300px;
+  
 }
 .conversation-list {
   display:flex;
   flex-direction: column;
   justify-content: flex-end;
   
+}
+
+.message-container-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .message-sent {
@@ -247,6 +257,12 @@ a:active {
   background-color: rgb(148, 148, 148);
   padding: 5px;
   border-radius: 10px;
+}
+
+.message-boxes {
+  display:flex ;
+  /* justify-content: flex-end; */
+  flex-direction: row-reverse;
 }
 
 
