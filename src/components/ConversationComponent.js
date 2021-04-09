@@ -15,7 +15,7 @@ export default function ConversationComponent(props){
         [unread, setUnread] = useState(0)
   
     useEffect(()=>{
-        let channel = cable.subscriptions.create(
+        cable.subscriptions.create(
             {channel: 'MessagesChannel', id: props.convo.id},
             {received: (data) => {
                 addUnread()
@@ -48,21 +48,21 @@ export default function ConversationComponent(props){
     function displayUnread(){
         // debugger
         if (openConvos.filter(c => c.id === convo.id).length === 0 && unread > 0){
-            return unread
+            return (<div className="count-badge">{unread}</div>)
         } else {
             return null
         }
     }
     return (
         <div>
-         <div onClick={showConvo}>
+         <div onClick={showConvo} className="convo-icon">
            <img src={convo.client.photo} className="mini-avatar"/>
-           
            {displayUnread()}
-          
          </div>
 
-               
+
+           
+                         
                 
         </div>
     )

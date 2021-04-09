@@ -265,4 +265,24 @@ a:active {
   flex-direction: row-reverse;
 }
 
+.convo-icon {
+  margin:5px;
+}
 
+.count-badge {
+  position: relative;
+  top: -40px;
+  left: 32px;
+  z-index: 200;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: -16px;
+}
