@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
 html {
   height:100vh;
@@ -285,4 +286,8 @@ a:active {
   border-radius: 8px;
   font-size: 12px;
   margin-bottom: -16px;
+}
+
+.stars {
+  text-shadow: 2px 2px black;
 }

@@ -35,10 +35,40 @@ export default function Reviews(props){
             }) 
     }
 
+    function getRating(){
+        // const star = () => {
+        //     return (<span class="material-icons-outlined">
+        //     star
+        //     </span>)
+        // }
+        let fullStar = []
+        let emptyStar = []
+        for(let i=0; i < review.rating; i++){
+           fullStar.push(i)
+        }
+        for(let i=0; i < 5 - review.rating; i++){
+            emptyStar.push(i)
+         }
+        // return review.rating
+        // debugger
+        return (
+            <div >
+            {fullStar.map(num => <span style={{color: "gold"}} className="material-icons-outlined stars">
+            star
+            </span>)}
+            {emptyStar.map(num => <span style={{color: "black"}} className="material-icons-outlined stars">
+            star
+            </span>)}
+            </div>
+        )
+    }
+
     return (
         <div>
          
             {review.client.username}
+            <br/>
+            {getRating()}
             <br/>
             {review.content}
            
