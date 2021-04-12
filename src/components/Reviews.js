@@ -53,25 +53,38 @@ export default function Reviews(props){
         // debugger
         return (
             <div >
-            {fullStar.map(num => <span style={{color: "gold"}} className="material-icons-outlined stars">
+            {fullStar.map(num => <span key={num} style={{color: "gold"}} className="material-icons-outlined stars">
             star
             </span>)}
-            {emptyStar.map(num => <span style={{color: "black"}} className="material-icons-outlined stars">
+            {emptyStar.map(num => <span key={num} style={{color: "black"}} className="material-icons-outlined stars">
             star
             </span>)}
             </div>
         )
     }
 
+    function formatDate(){
+        const date = new Date(review.created_at)
+        return date.toLocaleString()
+    }
+
     return (
-        <div>
-         
-            {review.client.username}
-            <br/>
-            {getRating()}
-            <br/>
-            {review.content}
+        <div className="review">
+            <div className="review-top">
+                <div className="review-top-left">
+                    <img src={review.client.photo}/>
+                    <div>{review.client.username}</div>
+                </div> 
+                
+                <div>{getRating()}</div>
+            </div>
            
+            <div className="review-top-date">{formatDate()}</div>
+            
+            <div className="review-content">
+            <q><span className="review-content-text">{review.content}</span></q>
+            </div>
+            
             {!review.barber_review_comment ? 
             <div>
                 {reply && 
@@ -84,9 +97,10 @@ export default function Reviews(props){
                 </div>
             </div>
             :
-            <div>
-                {/* {test()} */}
-                {review.barber_review_comment.content}
+            <div className="review-reply">
+                <h4>You Replied:</h4>
+                
+                <p>{review.barber_review_comment.content}</p>
             </div>}
             
         </div>

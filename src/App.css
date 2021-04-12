@@ -289,5 +289,77 @@ a:active {
 }
 
 .stars {
-  text-shadow: 2px 2px black;
+  text-shadow: 1px 1px rgb(91, 91, 91);
 }
+
+.review {
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px;
+  margin: 10px 0px;
+  width: 500px;
+}
+
+.review-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-top-left img {
+  max-width: 26px;
+  border-radius: 13px;
+  margin-right: 5px;
+}
+
+.review-top-left {
+  display: flex;
+  align-items: center;
+}
+.review-top-date {
+  color: grey;
+  font-size: 12px;
+  /* margin-top: -5px; */
+}
+
+.review-reply h4{
+  font-size: 12px;
+  margin-bottom: -15px;
+  color: gray;
+}
+
+.review-reply p {
+  font-size: 14px;
+  color: gray;
+  font-style: italic;
+}
+
+.review-content {
+  margin-bottom: -20px;
+  color: rgba(128, 128, 128, 0.646);
+  /* font-size: 25px; */
+  
+}
+
+.review-content-text {
+  color: rgb(69, 69, 69);
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+q {
+  quotes: '“ ' ' ”'; 
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  
+  
+}
+q:before { 
+  content: open-quote;
+  vertical-align: -15px;
+}
+q:after  { 
+  content: close-quote; 
+  vertical-align: -17px;
+}
+
